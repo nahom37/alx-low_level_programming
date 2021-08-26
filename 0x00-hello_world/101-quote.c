@@ -1,4 +1,3 @@
-#!/bin/bash
 int main (void)
 {
 printf(“the text“);
