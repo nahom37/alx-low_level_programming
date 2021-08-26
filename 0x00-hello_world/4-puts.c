@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - Prints quote
+ * main - Prints string
  *
- * Return: zero on success
- *
+ * Return: Always 0 (success)
  */
 int main(void)
 {
