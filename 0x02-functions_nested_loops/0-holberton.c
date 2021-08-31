@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include <main.h>
 
-int main.h() {
+int main() {
     printf("Holberton\n");
     return 0;
 }
