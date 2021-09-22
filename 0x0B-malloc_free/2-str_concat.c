@@ -1,45 +1,39 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
 /**
- * str_concat - get ends of input and add together for size
- * @s1: input one to concat
- * @s2: input two to concat
- * Return: concat of s1 and s2
+ * str_concat - this function concatante two strings to a new memory position
+ * a blank line
+ *@s1: the string dest
+ *@s2: the string source
+ * Description: this function concatena two strings)?
+ * section header: the header of this function is holberton.h)*
+ * Return: this return a char pointer to the string.
  */
 char *str_concat(char *s1, char *s2)
 {
-	int end1, end2, i = 0;
-	char *array;
+	char *p;
+	int i, j, k, l;
 
-	if (s1 == NULL || s2 == NULL)
-		s1 = s2 = "";
+	s1 == NULL ? s1 = "" : s1;
+	s2 == NULL ? s2 = "" : s2;
 
-	for (end1 = 0; end1 <= *s1; end1++)
-	{
-	}
+	i = 0, j = 0;
+	while (*(s1 + i) != '\0')
+		i++;
+	while (*(s2 + j) != '\0')
+		j++;
 
-	for (end2 = 0; end2 <= *s2; end2++)
-	{
-	}
-
-	array = malloc(sizeof(char) * (end1 + end2 + 1));
-
-	if (array == NULL)
+	p = malloc((i * sizeof(*s1)) + (j * sizeof(*s2)) + 1);
+	if (p == NULL)
 		return (NULL);
 
-	while (*s1)
+	for (l = 0, k = 0; l < (i + j + 1); l++)
 	{
-		array[i] = *s1;
-		i++;
-		s1++;
+		if (l < i)
+			*(p + l) = *(s1 + l);
+		else
+			*(p + l) = *(s2 + (k++));
 	}
 
-	while (*s2)
-	{
-		array[i] = *s2;
-		i++;
-		s2++;
-	}
-	return (array);
+	return (p);
 }
