@@ -1,57 +1,76 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "main.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * is_digit - checks if a string contains a non-digit char
- * @s: string to be evaluated
- *
- * Return: 0 if a non-digit is found, 1 otherwise
+ * _puts - prints a string, followed by a new line,
+ * @str: pointer to the string to print
+ * Return: void
  */
-int is_digit(char *s)
+void _puts(char *str)
 {
-int i = 0;
-
-while (s[i])
-{
-if (s[i] < '0' || s[i] > '9')
-return (0);
-i++;
+  int i = 0;
+  while (str[i])
+    {
+      _putchar(str[i]);
+      i++;
+    }
 }
-return (1);
-}
-
 /**
- * _strlen - returns the length of a string
- * @s: string to evaluate
- *
- * Return: the length of the string
+ * _atoi - convert a string to an integer.
+ * @s: char type string
+ * Return: integer converted
  */
-int _strlen(char *s)
+int _atoi(const char *s)
 {
-int i = 0;
-
-while (s[i] != '\0')
-{
-i++;
+  int sign = 1;
+  unsigned long int resp = 0, firstNum, i;
+  for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+    {
+      if (s[firstNum] == '-')
+	{
+	  sign *= -1;
+	}
+    }
+  for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
+    {
+      resp *= 10;
+      resp += (s[i] - 48);
+    }
+  return (sign *resp);
 }
-return (i);
-}
-
 /**
- * errors - handles errors for main
+ * print_int - prints an integer.
+ * @n: int
+ * Return: 0
  */
-void errors(void)
+void print_int(unsigned long int n)
 {
-printf("Error\n");
-exit(98);
+  unsigned  long int divisor = 1, i, resp;
+  for (i = 0; n / divisor > 9; i++, divisor *= 10)
+    ;
+  for (; divisor >= 1; n %= divisor, divisor /= 10)
+    {
+      resp = n / divisor;
+      _putchar('0' + resp);
+    }
 }
-
 /**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
- *
+ * main - print the result of the multiplication, followed by a new line
+ * @argc: int
+ * @argv: list
+ * Return: 0
+ */
+int main(int argc, char const *argv[])
+{
+  (void)argc;
+  if (argc != 3)
+    {
+      _puts("Error ");
+      exit(98);
+    }
+  print_int(_atoi(argv[1]) * _atoi(argv[2]));
+  _putchar('\n');
+  return (0);
  * Return: always 0 (Success)
  */
 int main(int argc, char *argv[])
