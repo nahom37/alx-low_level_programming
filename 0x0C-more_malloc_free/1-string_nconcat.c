@@ -1,41 +1,47 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
+
 /**
- * string_nconcat - copy a string.
- * a blank line
- *@s1: the first string
- *@s2: the second string
- *@n: the number of bytes
- * Description: copy a string)?
- * section header: the header of this function is holberton.h)*
- * Return: returns a pointer to a char..
+ * *string_nconcat - concatenates n bytes of a string to another string
+ * @s1: string to append to
+ * @s2: string to concatenate from
+ * @n: number of bytes from s2 to concatenate to s1
+ *
+ * Return: pointer to the resulting string
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-  char *p;
-  unsigned int i, j, k, l;
+char *s;
+unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
 
+while (s1 && s1[len1])
+len1++;
 
-  i = 0, l = 0;
-  s1 == NULL ? s1 = "" : s1;
-  s2 == NULL ? s2 = "" : s2;
-  while (*(s1 + i) != '\0')
-    i++;
-  while (*(s2 + l) != '\0')
-    l++;
-  if (n >= l)
-    n = l;
+while (s2 && s2[len2])
+len2++;
 
-  p = malloc((i + n + 1) * sizeof(char));
-  if (p == NULL)
-    return (NULL);
-  for (j = 0, k = 0; j < (i + n); j++)
-    {
-      if (j < i)
-	p[j] = s1[j];
-      else
-	p[j] = s2[k++];
-    }
-  p[j] = '\0';
+if (n < len2)
+s = malloc(sizeof(char) * (len1 + n + 1));
+else
+s = malloc(sizeof(char) * (len1 + len2 + 1));
 
-  return (p);
+if (!s)
+return (NULL);
+
+while (i < len1)
+{
+s[i] = s1[i];
+i++;
+}
+
+while (n < len2 && i < (len1 + n))
+s[i++] = s2[j++];
+
+while (n >= len2 && i < (len1 + len2))
+s[i++] = s2[j++];
+
+s[i] = '\0';
+
+return (s);
 }
