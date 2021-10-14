@@ -9,12 +9,12 @@
  */
 int get_bit(unsigned long in n, unsigned int index)
 {
-int bit_val;
+	unsigned int bits;
 
-if (index > 63)
-return (-1);
+	bits = (n >> index) & 1;
 
-bit_val = (n >> index) & 1;
-
-return (bit_val);
+	if ((bits == 1) || (bits == 0))
+		return (bits);
+	else
+		return (-1);
 }
