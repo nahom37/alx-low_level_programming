@@ -16,4 +16,4 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m);
 int get_endianess(void);
 int _atoi(const char *s);
 
-#endif
+#endif  /*_HEADER_*/ 
