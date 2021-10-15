@@ -9,13 +9,12 @@
  */
 int get_bit(unsigned long in n, unsigned int index)
 {
-	unsigned int bits;
-
-	bits = (n >> index) & 1;
-
-	if ((bits == 1) || (bits == 0))
-		return (bits);
-	else
-		return (-1);
-
+unsigned long int divisor, check;
+if (index > (sizeof(unsigned long int) * 8 - 1))
+return (-1);
+divisor = 1 << index;
+check = n & divisor;
+if (check == divisor)
+return (1);
+return (0);
 }
