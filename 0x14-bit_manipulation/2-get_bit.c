@@ -9,12 +9,12 @@
  */
 int get_bit(unsigned long in n, unsigned int index)
 {
-unsigned long int divisor, check;
-if (index > (sizeof(unsigned long int) * 8 - 1))
-return (-1);
-divisor = 1 << index;
-check = n & divisor;
-if (check == divisor)
-return (1);
-return (0);
+	unsigned long int bit;
+
+	if (index > 64)
+		return (-1);
+
+	bit = n >> index;
+
+	return (bit & 0x1);
 }
