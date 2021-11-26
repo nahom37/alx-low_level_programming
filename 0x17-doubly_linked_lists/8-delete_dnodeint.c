@@ -2,40 +2,36 @@
 
 /**
  * delete_dnodeint_at_index - delete node at index
- * @head: double pointer to head of node
- * @index: index to delete
- * Return: list with deleted node, 1 on success, -1 on fail
+ * @head: type dpointer of next and prev node
+ * @index: type unisgned int index of node
+ * Return: 1 if success or -1 if node NULL
  */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	unsigned int count = 0;
-	dlistint_t *temp = NULL;
+	dlistint_t *temp_node = *head;
 
-	if (head == NULL || *head == NULL)
+	if (*head == NULL)
 		return (-1);
 
-	temp = *head;
-
-	if (index == 0)
+	for (; index != 0; index--)
 	{
-		*head = (*head)->next;
+		if (temp_node == NULL)
+			return (-1);
+		temp_node = temp_node->next;
+	}
+	if (temp_node == *head)
+	{
+		*head = temp_node->next;
 		if (*head != NULL)
 			(*head)->prev = NULL;
-		free(temp);
-		return (1);
 	}
-	while (temp->next != NULL)
+	else
 	{
-		if (count == index)
-		{
-			temp->next->prev = temp->prev;
-			temp->prev->next = temp->next;
-			free(temp);
-			return (1);
-		}
-		temp = temp->next;
-		count++;
+		temp_node->prev->next = temp_node->next;
+		if (temp_node->next != NULL)
+			temp_node->next->prev = temp_node->prev;
 	}
-
-	return (-1);
+	free(temp_node);
+	return (1);
 }
